@@ -1,0 +1,43 @@
+router_task:
+  description: >
+    Conversation history:
+    {conversation_history}
+
+    Latest user message:
+    {user_message}
+
+    Choose exactly ONE agent from this list:
+    - normalizing
+    - reflection
+    - questioning
+    - solutions
+    - psychoeducation
+    - holding_space
+    - safety_screening
+
+    Rules:
+    - High affect / venting / no clear ask → holding_space
+    - Sharing pain, seeking to be heard → normalizing
+    - Describing a recurring pattern → reflection
+    - Exploring a situation → questioning
+    - Asking for tools or strategies → solutions
+    - Asking why or what about psychology → psychoeducation
+    - Any mention of self-harm, crisis, suicide → safety_screening
+
+    Output ONLY the agent name. No explanation. Lowercase. No punctuation.
+  expected_output: >
+    One agent name from the list, lowercase, no punctuation.
+  agent: router_agent
+
+response_task:
+  description: >
+    Conversation history:
+    {conversation_history}
+
+    User's latest message:
+    {user_message}
+
+    Respond according to your protocol. Be warm, human, and follow your steps strictly.
+  expected_output: >
+    A therapeutic response following your agent's specific protocol.
+  agent: holding_space_agent
